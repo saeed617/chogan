@@ -3,4 +3,4 @@ set -e
 
 ./manage.py makemigrations
 ./manage.py migrate
-./manage.py runserver
+./manage.py runserver 0.0.0.0:1111
