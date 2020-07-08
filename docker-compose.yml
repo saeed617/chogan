@@ -11,3 +11,6 @@ services:
       - .:/chogan/
     ports:
       - "1111:8000"
+
+  redis:
+    image: redis

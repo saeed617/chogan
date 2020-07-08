@@ -24,7 +24,7 @@ SECRET_KEY = '!$!6rf2ct*&3ip0&03!gq--t^nhck#ct4su1m&^q%&4j_sppv&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['stahmasebi.ir']
+ALLOWED_HOSTS = ['localhost', 'stahmasebi.ir']
 
 # Application definition
 
@@ -117,3 +117,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('redis', 6379)],
+        },
+    },
+}

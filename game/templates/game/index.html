@@ -142,10 +142,10 @@
             update_view(ctx);
         }
 
-        function connect_onclick() {
+        function connect_onclick(game_name) {
             if (ws == null) {
                 var ws_host_addr = `{{ request.get_host }}`;
-                ws = new WebSocket("ws://" + ws_host_addr + "/game");
+                ws = new WebSocket("ws://" + ws_host_addr + "/ws/game/" + game_name + "/");
                 document.getElementById("ws_state").innerHTML = "CONNECTING";
                 ws.onopen = ws_onopen;
                 ws.onclose = ws_onclose;
@@ -157,7 +157,6 @@
         function ws_onopen() {
             document.getElementById("ws_state").innerHTML = "<font color='blue'>CONNECTED</font>";
             document.getElementById("bt_connect").innerHTML = "Disconnect";
-            ws.send("dummy\r\n");
         }
 
         function ws_onclose() {
@@ -173,7 +172,7 @@
             e_msg = e_msg || window.event; // MessageEvent
 
             console.log(e_msg.data);
-            var arr = JSON.parse(e_msg.data);
+            var arr = JSON.parse(e_msg.data)['positions'];
             keepers[0].dir = parseInt(arr[0]);
             keepers[1].dir = parseInt(arr[1]);
         }
@@ -375,7 +374,8 @@
         <p>
             WebSocket : <span id="ws_state">null</span>
         </p>
-        <button id="bt_connect" type="button" onclick="connect_onclick();">Connect</button>
+        <input id="game_name" name="game_name" type="text">
+        <button id="bt_connect" type="button" onclick="connect_onclick(document.getElementById('game_name').value);">Connect</button>
     </h2>
 </center>
 </body>
