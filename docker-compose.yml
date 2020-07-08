@@ -2,6 +2,7 @@ version: '3.1'
 
 services:
   chogan:
+    restart: always
     build:
       context: .
     stdin_open: true
