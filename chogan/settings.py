@@ -25,7 +25,7 @@ SECRET_KEY = '!$!6rf2ct*&3ip0&03!gq--t^nhck#ct4su1m&^q%&4j_sppv&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['stahmasebi.ir']
 
 
 # Application definition
