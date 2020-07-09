@@ -171,8 +171,8 @@
         function ws_onmessage(e_msg) {
             e_msg = e_msg || window.event; // MessageEvent
 
-            console.log(e_msg.data);
-            var arr = JSON.parse(e_msg.data)['positions'];
+            var data = JSON.parse(e_msg.data);
+            arr = JSON.parse(data['directions']);
             keepers[0].dir = parseInt(arr[0]);
             keepers[1].dir = parseInt(arr[1]);
         }
@@ -320,7 +320,7 @@
                 keepers[i].x += keepers[i].dir * keepers[i].speed;
 
                 if (keepers[i].right > cvs_width && keepers[i].dir == 1) {
-                    keepers[i].dir *= 0;
+                    keepers[i].dir = 0;
                     keepers[i].x = cvs_width - keepers[i].width / 2
                 }
 
@@ -375,7 +375,9 @@
             WebSocket : <span id="ws_state">null</span>
         </p>
         <input id="game_name" name="game_name" type="text">
-        <button id="bt_connect" type="button" onclick="connect_onclick(document.getElementById('game_name').value);">Connect</button>
+        <button id="bt_connect" type="button" onclick="connect_onclick(document.getElementById('game_name').value);">
+            Connect
+        </button>
     </h2>
 </center>
 </body>
